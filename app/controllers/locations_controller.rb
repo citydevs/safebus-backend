@@ -24,10 +24,12 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
-    puts location_params
-    bus = Bus.friendly.find(location_params[:placa].downcase)
-    @location = Location.new(lat:location_params[:lat],lng: location_params[:lng], bus_id: bus.id)
-
+    if location_params[:bus_id]
+      @location = Location.new(location_params)
+    else
+      bus = Bus.friendly.find(location_params[:placa].downcase)
+      @location = Location.new(lat:location_params[:lat],lng: location_params[:lng], bus_id: bus.id)
+    end
     respond_to do |format|
       if @location.save
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
@@ -71,6 +73,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:lat, :lng, :placa)
+      params.require(:location).permit(:lat, :lng, :placa, :bus_id)
     end
 end
