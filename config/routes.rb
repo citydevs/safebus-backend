@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  resources :locations
+  resources :clients
+
+  resources :locations 
 
   resources :routes
 
   resources :buses
+  get 'api/send_gcm' => 'welcome#send_gcm', defaults: {format: :json}
+
+  get 'api/locations/buses', to: 'locations#buses', defaults: {format: :json}
+  get 'api/client_panic', to: 'clients#client_panic', defaults: {format: :json}
 
   get 'welcome/index'
 
