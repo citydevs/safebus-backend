@@ -11,9 +11,10 @@ class ClientsController < ApplicationController
     puts params[:email]
     puts params[:placa]
     gcm = GCM.new("AIzaSyB7eYdj4HgGK_akFXpBVk109mb1_d_wQhU")
-    registration_ids = ["APA91bHQwdJFAtAq3cZESW2tWJsAqCFpWhm8gsNeyAL9PBQ4S-0a9v7-st5DPmZoz1ZCJpRXIU7xCA6bVnNBwnTVizAjuVG_fVUtih15_DPi1cOLwpwSxYMyCJkDlcwt_pyUF38mleJi38Uj8H0zDObbRAncrf9SSg", "APA91bGOJ0R1qmd8Wm7IbE8TrTv0y8wRoVc-0lRGymVnDQimjVZjwPiNYKVqLeNjsRQUBF7rZvFSvst_GvPNq8FGIbJhCstCfN7Lyyn6HIN-olSM0qy0BaJ1og7o1W3b-2zFsaYWfNLuQyarPEviC4EnageHIxIJew"]
+    #registration_ids = ["APA91bHQwdJFAtAq3cZESW2tWJsAqCFpWhm8gsNeyAL9PBQ4S-0a9v7-st5DPmZoz1ZCJpRXIU7xCA6bVnNBwnTVizAjuVG_fVUtih15_DPi1cOLwpwSxYMyCJkDlcwt_pyUF38mleJi38Uj8H0zDObbRAncrf9SSg", "APA91bGOJ0R1qmd8Wm7IbE8TrTv0y8wRoVc-0lRGymVnDQimjVZjwPiNYKVqLeNjsRQUBF7rZvFSvst_GvPNq8FGIbJhCstCfN7Lyyn6HIN-olSM0qy0BaJ1og7o1W3b-2zFsaYWfNLuQyarPEviC4EnageHIxIJew"]
     client = Client.find_by email: params[:email]
     chofer = Bus.find_by placa: params[:placa]
+    registration_ids = [chofer.reg_id]
     options = { data: {alerta: client.email}, collapse_key: "score_actualizado"}
     response = gcm.send(registration_ids, options)
     render json: response
