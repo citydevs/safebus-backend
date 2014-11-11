@@ -4,7 +4,7 @@ class Bus < ActiveRecord::Base
 
   friendly_id :placa, use: :slugged
   belongs_to :route
-  has_many :locations
+  has_many :locations, dependent: :destroy
   has_many :most_recent_location, -> { order('created_at DESC').limit(1) }, class_name: 'Location'
 
 
