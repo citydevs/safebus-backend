@@ -1,10 +1,28 @@
-class UsersController < ApplicationController
-  before_action :set_bus, only: [:show, :edit, :update, :destroy]
+class PasswordsController < ApplicationController
+  before_action :set_password, only: [:show]
+
+  def create
+    @password = Password.new(password_params)
+    respond_to do |format|
+      if @password.save
+        format.html { redirect_to @password, notice: 'Password was successfully created.' }
+        format.json { render :show, status: :created, location: @password }
+      else
+        format.html { render :root }
+        format.json { render json: @password.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def show
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_password
-      @password = Password.find(params[:id])
+      @password = Password.last
+      @new_password = Password.new
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

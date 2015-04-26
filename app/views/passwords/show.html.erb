@@ -1,0 +1,24 @@
+<% if @password  %>
+<%= @password.password %>
+<% end %>
+
+<%= simple_form_for(@new_password) do |f| %>
+  <% if @new_password.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@new_password.errors.count, "error") %> prohibited this bus from being saved:</h2>
+
+      <ul>
+      <% @new_password.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :password %>
+  </div>
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

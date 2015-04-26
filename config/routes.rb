@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   post 'users', to: 'users#set_reg', defaults: {format: :json}
   get 'bus/password', to: 'clients#get_password', defaults: {format: :json}
+  resources 'passwords'
+  get 'password', to: 'passwords#show'
+  post 'password', to: 'passwords#create'
   resources :clients
 
   resources :locations 
