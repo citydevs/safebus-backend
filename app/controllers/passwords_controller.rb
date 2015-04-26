@@ -1,5 +1,6 @@
 class PasswordsController < ApplicationController
   before_action :set_password, only: [:show]
+  before_filter :authenticate_user!
 
   def create
     @password = Password.new(password_params)
