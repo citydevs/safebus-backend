@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, :skip => [:registrations]                                          
+  devise_for :users, :skip => [:registrations], :controllers => { sessions: 'sessions'}                                        
   as :user do
     get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
     put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
   end
+
+  post 'users', to: 'users#set_reg', defaults: {format: :json}
   resources :clients
 
   resources :locations 
