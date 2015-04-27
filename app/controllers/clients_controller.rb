@@ -7,17 +7,23 @@ class ClientsController < ApplicationController
     @clients = Client.all
   end
 
+  ##COCHINERO
   def get_password
-    gcm = GCM.new("AIzaSyB7eYdj4HgGK_akFXpBVk109mb1_d_wQhU")
-    client = Client.find_by email: params[:email]
-    reg_id = [client.reg_id]
-    options = { data: {bus_password: Password.last.password}, collapse_key: "Contraseña"}
-    response = gcm.send(reg_id, options)
-    puts response.class
-    if response[:status_code] == 200
-      render json: {msg: "Contraseña enviada correctamente", response: response}
-    else
-      render :json => {:error => "something went wrong", response: response}, :status => :not_found
+    if Client.find_by email: params[:email] && Password.last != nil
+      gcm = GCM.new("AIzaSyB7eYdj4HgGK_akFXpBVk109mb1_d_wQhU")
+      client = Client.find_by email: params[:email]
+      reg_id = [client.reg_id]
+      last_pass = Password.last.password
+      options = { data: {bus_password: last_pass}, collapse_key: "Contraseña"}
+      response = gcm.send(reg_id, options)
+      puts response.class
+      if response[:status_code] == 200
+        render json: {msg: "Contraseña enviada correctamente", password: last_pass, response: response}
+      else
+        render :json => {:error => "something went wrong", response: response}, :status => :not_found
+      end
+    else 
+      render :json => {:error => "something went wrong"}, :status => 500
     end
   end
 
