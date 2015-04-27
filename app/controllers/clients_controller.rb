@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
 
   ##COCHINERO
   def get_password
-    if Client.find_by email: params[:email] && Password.last != nil
+    if (Client.find_by email: params[:email]) && Password.last != nil
       gcm = GCM.new("AIzaSyB7eYdj4HgGK_akFXpBVk109mb1_d_wQhU")
       client = Client.find_by email: params[:email]
       reg_id = [client.reg_id]
