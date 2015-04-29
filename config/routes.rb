@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :alerts
+
   devise_for :users, :skip => [:registrations], :controllers => { sessions: 'sessions'}                                        
   as :user do
     get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
