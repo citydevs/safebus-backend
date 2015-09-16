@@ -5,14 +5,14 @@ class Alert < ActiveRecord::Base
   validates_presence_of :latitude
   validates_presence_of :longitude
   validates_presence_of :client_id
-
-  attr_accessor :email
+  validates_presence_of :email
 
   def set_client_id
     user = Client.find_by(email: self.email)
     puts user
     if user
       self.client_id = user.id
+      self.email = user.email
     end
   end
 end

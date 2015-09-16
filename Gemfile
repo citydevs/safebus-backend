@@ -31,6 +31,8 @@ gem 'gcm'
 gem 'httparty'
 gem 'devise'
 
+gem 'mapbox-rails', :git => 'https://github.com/aai/mapbox-rails.git'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,5 +1,8 @@
 <h1>Listing alerts</h1>
 
+<div id='map' class='dark'></div>
+
+
 <table>
   <thead>
     <tr>
@@ -14,13 +17,14 @@
   <tbody>
     <% @alerts.each do |alert| %>
       <tr>
-        <td><%= alert.alert_type %></td>
+        <% if alert.alert_type == 1 %>
+          <td>Yo</td>
+        <% else %>
+          <td>Alguien más</td>
+        <% end %>
         <td><%= alert.latitude %></td>
         <td><%= alert.longitude %></td>
-        <td><%= alert.client_id %></td>
-        <td><%= link_to 'Show', alert %></td>
-        <td><%= link_to 'Edit', edit_alert_path(alert) %></td>
-        <td><%= link_to 'Destroy', alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= alert.email %></td>
       </tr>
     <% end %>
   </tbody>
