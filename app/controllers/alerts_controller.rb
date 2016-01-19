@@ -29,7 +29,8 @@ class AlertsController < ApplicationController
     @alert = Alert.new(alert_params)
     respond_to do |format|
       if @alert.save
-        gcm = GCM.new("AIzaSyB7eYdj4HgGK_akFXpBVk109mb1_d_wQhU")
+        key = ENV['GCMKEY']
+        gcm = GCM.new(key)
         client = @alert.client
         options = { data: {msg: "ALERTA ENVIADA AL ADMINISTRADOR"}, collapse_key: "ALERTA"}
         reg_id = [client.reg_id]
