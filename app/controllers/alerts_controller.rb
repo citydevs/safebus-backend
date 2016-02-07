@@ -77,6 +77,6 @@ class AlertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alert_params
-      params.require(:alert).permit(:alert_type, :latitude, :longitude,:email)
+      params.require(:alert).permit(:alert_type, :latitude, :longitude,:email, :harrasment_type)
     end
 end

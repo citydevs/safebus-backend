@@ -26,8 +26,10 @@ ready = ->
     properties = marker.feature.properties
 
     popup = '<div class="popup">' +
-              '<h3>' + properties.name + '</h3>' +
-              '<p>' + properties.type + '</p>' +
+              '<h3>Cliente: <b>' + properties.name + '</b></h3>' +
+              '<p>Tipo de alerta: <b>' + properties.type + '</b></p>' +
+              '<p>Tipo de acoso: <b>' + properties.harrasment_type + '</b></p>' +
+              '<p>Hora de alerta: <b>' + properties.created + '</b></p>' +
             '</div>'
     marker.bindPopup popup,
       closeButton: true

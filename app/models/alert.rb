@@ -7,6 +7,8 @@ class Alert < ActiveRecord::Base
   validates_presence_of :client_id
   validates_presence_of :email
 
+  enum harrasment_type: [:mirada, :verbal, :tocamiento, :exibicion]
+
   def set_client_id
     user = Client.find_by(email: self.email)
     puts user
