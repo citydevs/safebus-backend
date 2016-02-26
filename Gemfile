@@ -30,6 +30,7 @@ gem 'rails_12factor', group: :production
 gem 'gcm'
 gem 'httparty'
 gem 'devise'
+gem 'local_time'
 
 gem 'mapbox-rails', :git => 'https://github.com/aai/mapbox-rails.git'
 

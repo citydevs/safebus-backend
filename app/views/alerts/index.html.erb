@@ -28,7 +28,7 @@
         <td><%= alert.longitude %></td>
         <td><%= alert.email %></td>
         <td><%= alert.harrasment_type %></td>
-        <td><%= alert.created_at.localtime %></td>
+        <td><%= local_time(alert.created_at) %></td>
         <td>
       </tr>
     <% end %>

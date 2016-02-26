@@ -15,3 +15,4 @@
 //= require mapbox.js
 //= require turbolinks
 //= require_tree .
+//= require local_time
